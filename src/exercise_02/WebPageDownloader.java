@@ -7,16 +7,19 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 public class WebPageDownloader {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws URISyntaxException {
 		String url = "https://www.google.com";
 		
 		try {
             // Parse the URL to get the host, port and path
-			URL parsedURL = new URL(url);
+			URI uri = new URI(url);
+			URL parsedURL = uri.toURL();
 			
 			String host = parsedURL.getHost();
 			int port = parsedURL.getPort() == -1 ? 80: parsedURL.getPort();
